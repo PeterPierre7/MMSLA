@@ -64,18 +64,8 @@ class MMSLA:
 		# print(msg)
 		# The M114 status msg lenght is know
 		expected_len = 51
-
 		# If the msg is about stepper_pos
-		if "Z:" in msg:
-			# If the serial port is weird we flush TODO: better error handle
-			while len(msg) != expected_len:
-				# Flush the serial port
-				self.__ser.flush()
-				# Get clean msg
-				self.__ser.write("M114".encode())
-				msg = self.__ser.readline().decode()
-				print(msg)
-				
+		if "Z:" in msg and len(msg) == expected_len:
 			# The msg is splited into each info
 			splited_msg = msg.split()
 			# The Z pos float is extracted
@@ -94,7 +84,7 @@ class MMSLA:
 		self.buffer.append(self.stepper_pos)
 		# Look at if the pos is stable
 		print(f"STD : {np.std(self.buffer)}")
-		if np.std(self.buffer) == 0.0:
+		if np.std(self.buffer) < 0.1:
 			# If the position is stable
 			# The layer is the stable position / by the std layer height
 			self.layer_from_stepper = ceil(self.stepper_pos/ self.layer_height)
