@@ -1,1 +1,1 @@
-{"layer_height": 0.05, "ctb_file": "_D50_S", "resine_changes": [{"layer": 0, "resine": "build", "exposure_time": 8000}, {"layer": 10, "resine": "tenuous", "exposure_time": 8000}, {"layer": 20, "resine": "build", "exposure_time": 8000}]}
+{"layer_height": 0.05, "ctb_file": "_D50_S.ctb", "resine_changes": [{"layer": 0, "resine": "build", "exposure_time": 8000}, {"layer": 10, "resine": "tenuous", "exposure_time": 8000}, {"layer": 20, "resine": "build", "exposure_time": 8000}]}

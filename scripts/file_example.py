@@ -6,7 +6,7 @@ def write_json_file():
     # Example of configuration file for MMSLA :
     MMSLA_config = {
         "layer_height": 0.05,  # mm
-        "ctb_file" : "_D50_S",
+        "ctb_file" : "_D50_S.ctb",
         "resine_changes": [
             {
                 "layer": 0,  # no cut off

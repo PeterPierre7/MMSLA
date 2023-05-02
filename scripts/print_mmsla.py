@@ -45,7 +45,6 @@ class MMSLA:
 	def start(self):
 		# Get the file to print path
 		file_name = self.config["ctb_file"]
-		print(file_name)
 		# Ask the saturn to print the file
 		self.__ser.write(f"M6030 '{file_name}'".encode())
 		#  Ask the saturn to report every 10ms
