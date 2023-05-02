@@ -12,9 +12,10 @@ def send_command():
 
 def serial_read(ser: serial.Serial):
     while True:
-        ser.write("M156 S10".encode())
-        msg = ser.readline().decode()
-        print(msg)
+        if ser.in_waiting > 0:
+            ser.write("M156 S10".encode())
+            msg = ser.readline().decode()
+            print(msg)
 
 
 ser = serial.Serial("/dev/ttyS0", 115200)
@@ -22,5 +23,5 @@ ser = serial.Serial("/dev/ttyS0", 115200)
 
 y = threading.Thread(target=serial_read, args=ser)
 y.start()
-x = threading.Thread(target=send_command)
-x.start()
+# x = threading.Thread(target=send_command)
+# x.start()
