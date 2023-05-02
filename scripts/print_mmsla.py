@@ -72,8 +72,10 @@ class MMSLA:
 				# Flush the serial port
 				self.__ser.flush()
 				# Get clean msg
+				self.__ser.write("M114".encode())
 				msg = self.__ser.readline().decode()
 				print(msg)
+				
 			# The msg is splited into each info
 			splited_msg = msg.split()
 			# The Z pos float is extracted
@@ -111,70 +113,6 @@ class MMSLA:
 				self.__update_layer()
 				if self.layer == self.next_layer_cut:
 					self.switch_resine()
-
-# def increment_pos(tab: list, new_z: float, rolling_size: int = 50):
-
-# 	tab.append(new_z)
-# 	if len(tab) > rolling_size:
-# 		del tab[0]
-
-
-# def find_layer(z_pos: list, old: int, layer_height: float = 0.05) -> int:
-
-# 	#  Define the constant for the export
-# 	start = 0
-# 	during = 1
-# 	up = 2
-# 	#  Calculate the history
-# 	z_std = np.std(z_pos)
-# 	#  If the history is stable
-# 	if abs(z_std) < 0.00001:
-# 		z_layer = z_pos[-1]
-# 		#  The printer is at a specific layer
-# 		layer = ceil(z_layer/layer_height)
-# 		print(layer, z_layer)
-# 		#  If the layer is different then it's the start of the layer
-# 		if layer - old == 1:
-# 			return [layer, start]
-# 		# If the layer is the same then it's during the  layer
-# 		elif layer - old == 0:
-# 			return [layer, during]
-# 		#  Else is not suppose to be possible
-# 		else:
-# 			print("odd layer history")
-# 			return [layer, up]
-# 	#  If the history is not constant, the printer is moving up and down
-# 	else:
-# 		print(f"up/down : mean :{z_std} z_pos:{z_layer}")
-# 		return [old, up]
-
-
-# def use_stepper_pos(self):
-# 	#  Add the new position to the history
-# 	increment_pos(tab=rolling_pos, new_z=stepper_pos)
-# 	#  Find the layer based on the history
-# 	layer_info = find_layer(z_pos=rolling_pos, old=old_layer)
-# 	#  The layer from the Z position
-# 	layer = layer_info[0]
-# 	#  The start or middle of the layer
-# 	adv = layer_info[1]
-# 	#  Print the info
-# 	print(f"Layer : {layer} - {adv}")
-
-# 	if layer == layer_cut and adv == 2:
-# 		__ser.write(" M25".encode())
-# 		restart = input()
-# 		__ser.write(restart.encode())
-
-# 	return layer
-
-
-# def read_json_file(path: str):
-# 	# Read the data from the JSON file
-# 	with open(path, "r") as f:
-# 		file_config = json.load(f)
-# 	return file_config
-
 
 if __name__ == "__main__":
 
