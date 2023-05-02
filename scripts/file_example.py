@@ -26,13 +26,13 @@ def write_json_file():
     }
 
     # Write the data to a JSON file
-    with open("print_settings.json", "w") as f:
+    with open("config/print_settings.json", "w+") as f:
         json.dump(MMSLA_config, f)
 
 
 def read_json_file():
     # Read the data from the JSON file
-    with open("print_settings.json", "r") as f:
+    with open("config/print_settings.json", "r") as f:
         changes = json.load(f)
 
     # Print the data to verify it was read correctly

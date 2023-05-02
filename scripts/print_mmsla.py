@@ -179,7 +179,7 @@ class MMSLA:
 if __name__ == "__main__":
 
 	# Create the MMSLA object
-	mmsla_print = MMSLA("print_settings.json")
+	mmsla_print = MMSLA("config/print_settings.json")
 	#  Main loop
 	mmsla_print.start()
 	mmsla_print.print_loop()
