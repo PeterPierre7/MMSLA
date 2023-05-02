@@ -19,14 +19,16 @@ class MMSLA:
 		self.layer_height = self.config["layer_height"]
 		# Load the parameter
 		self.__update_next_layer()
-		# Set the max buffer based on exposuretime 
-		self.max_buffer = int(self.expo_time*0.1)
-		# Set the bufffer variable
-		self.buffer = list(itertools.repeat(0, self.max_buffer))
 		# Set a default stepper_pos 
 		self.stepper_pos = 0
 		# Set a defualt value for layer based on stepper_pos 
 		self.layer_from_stepper = 0
+
+	def __update_buffer(self):
+		# Set the max buffer based on exposuretime 
+		self.max_buffer = int(self.expo_time*0.1)
+		# Set the bufffer variable
+		self.buffer = list(itertools.repeat(self.layer, self.max_buffer))
 
 	def __update_next_layer(self):
 
@@ -41,6 +43,9 @@ class MMSLA:
 			self.next_layer_cut = self.config["resine_changes"][0]["layer"]
 		else:
 			self.next_layer_cut = -1
+
+		# Once the infos are loaded, a buffer is created based on expose
+		self.__update_buffer()
 
 	def start(self):
 		# Get the file to print path
@@ -93,14 +98,21 @@ class MMSLA:
 
 	def switch_resine(self):
 		print('resine_switched')
+		self.__update_next_layer()
+		print(f"New resine : {self.resine_name}")
+
 
 	def __update_layer(self):
 		self.__get_layer_from_stepper()
+		if self.layer_from_stepper == self.layer+1:
+			self.layer = self.layer_from_stepper
+		print(f"Usable layer : {self.layer}")
 
 	def print_loop(self):
 		while True:
 			if mmsla_print.__ser.in_waiting > 0:
 				self.__update_layer()
+
 				if self.layer == self.next_layer_cut:
 					self.switch_resine()
 
