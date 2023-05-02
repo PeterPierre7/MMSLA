@@ -22,5 +22,5 @@ ser = serial.Serial("/dev/ttyS0", 115200)
 
 x = threading.Thread(target=send_command)
 x.start()
-y = threading.Thread(target=send_command, args=ser)
+y = threading.Thread(target=serial_read, args=ser)
 y.start()
