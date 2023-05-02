@@ -84,7 +84,7 @@ class MMSLA:
 		self.buffer.append(self.stepper_pos)
 		# Look at if the pos is stable
 		print(f"STD : {np.std(self.buffer)}")
-		if np.std(self.buffer) < 0.1:
+		if np.std(self.buffer) < 0.001:
 			# If the position is stable
 			# The layer is the stable position / by the std layer height
 			self.layer_from_stepper = ceil(self.stepper_pos/ self.layer_height)
