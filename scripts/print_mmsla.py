@@ -75,7 +75,7 @@ class MMSLA:
 			splited_msg = msg.split()
 			# The Z pos float is extracted
 			self.stepper_pos = float(splited_msg[4][2:])
-			print(f" Stepper pos : {self.stepper_pos}")
+			# print(f" Stepper pos : {self.stepper_pos}")
 		# If the msg is not about stepper
 		else:
 			# Print the msg
@@ -88,13 +88,13 @@ class MMSLA:
 		del self.buffer[0]
 		self.buffer.append(self.stepper_pos)
 		# Look at if the pos is stable
-		print(f"STD : {np.std(self.buffer)}")
+		# print(f"STD : {np.std(self.buffer)}")
 		if np.std(self.buffer) < 0.001:
 			# If the position is stable
 			# The layer is the stable position / by the std layer height
 			self.layer_from_stepper = ceil(self.stepper_pos/ self.layer_height)
 		# If not stable the layer stay the same
-		print(f"Layer from stepper : {self.layer_from_stepper}")
+		# print(f"Layer from stepper : {self.layer_from_stepper}")
 
 	def switch_resine(self):
 		print('resine_switched')
@@ -106,7 +106,7 @@ class MMSLA:
 		self.__get_layer_from_stepper()
 		if self.layer_from_stepper == self.layer+1:
 			self.layer = self.layer_from_stepper
-		print(f"Usable layer : {self.layer}")
+			print(f"Usable layer : {self.layer}")
 
 	def print_loop(self):
 		while True:
