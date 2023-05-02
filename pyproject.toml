@@ -1,0 +1,20 @@
+[project]
+name = "MMSLA"
+version = "0.1.0"
+description = "Code base to store the scripts related to the MMSLA projet at ETS"
+authors = [
+    {name = "Pierre Wadoux", email = "pierre.wadoux7@gmail.com"},
+]
+dependencies = [
+    "numpy>=1.24.3",
+    "pyserial>=3.5",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
+
+[tool.pdm]
