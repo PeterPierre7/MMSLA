@@ -13,7 +13,7 @@ def send_command(ser, stop_event):
 def serial_read(ser, stop_event):
     while not stop_event.is_set():
         if ser.in_waiting > 0:
-            ser.write("M156 S10".encode())
+            ser.write("M156 S1000".encode())
             msg = ser.readline().decode()
             print(msg)
         if stop_event.is_set():
