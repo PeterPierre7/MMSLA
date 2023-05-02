@@ -13,7 +13,6 @@ def send_command(ser, stop_event):
 def serial_read(ser, stop_event):
     while not stop_event.is_set():
         if ser.in_waiting > 0:
-            ser.write("M156 S1000".encode())
             msg = ser.readline().decode()
             print(msg)
         if stop_event.is_set():
@@ -21,6 +20,8 @@ def serial_read(ser, stop_event):
 
 
 ser = serial.Serial("/dev/ttyS0", 115200)
+ser.write("M156 S1000".encode())
+
 stop_event = threading.Event()
 
 t1 = threading.Thread(target=serial_read, args=(ser, stop_event))
