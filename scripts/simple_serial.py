@@ -6,7 +6,7 @@ def send_command():
     user = ""
     while "stop" not in user:
 
-        user = input("chitu g code to send")
+        user = input("chitu g code to send\n")
         ser.write(user.encode())
 
 
@@ -20,7 +20,7 @@ def serial_read(ser: serial.Serial):
 ser = serial.Serial("/dev/ttyS0", 115200)
 
 
-x = threading.Thread(target=send_command)
-x.start()
 y = threading.Thread(target=serial_read, args=ser)
 y.start()
+x = threading.Thread(target=send_command)
+x.start()
