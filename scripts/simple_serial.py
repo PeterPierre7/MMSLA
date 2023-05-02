@@ -13,7 +13,6 @@ x = threading.Thread(target=send_command)
 user = ""
 x.start()
 while "stop" not in user:
-	x.join()
 	try:
 		res = ser.readline().decode()
 		print("Saturn :" , res)
