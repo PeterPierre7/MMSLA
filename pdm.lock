@@ -11,7 +11,7 @@ summary = "Python Serial Port Extension"
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:d3106bf6d9b8a11c3860825ab5916745f534793acd166a85995cee94a36f2b54"
+content_hash = "sha256:b563b4fa6426a5b953c5302a08973c3aee4870cd6ec924bc63c220d46d152a92"
 
 [metadata.files]
 "numpy 1.24.3" = [
